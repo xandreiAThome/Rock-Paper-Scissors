@@ -36,6 +36,12 @@ function playRound(playerSelection, computerSelection) {
 function getHandPic(handSelected, div) {
   const img = document.createElement("img");
 
+  if (div === ".player") {
+    img.classList.add("chosen-hand-player");
+  } else {
+    img.classList.add("chosen-hand-computer");
+  }
+
   if (handSelected === "rock") {
     img.src = "assets/rock.png";
   } else if (handSelected === "paper") {
@@ -75,7 +81,6 @@ function Game() {
 
   // removes transform when transition ends
   function normalButton(e) {
-    console.log(e.propertyName);
     if (e.propertyName === "transform") {
       this.classList.remove("clicked");
     }
@@ -96,9 +101,17 @@ function Game() {
     const win = document.querySelector(".winner");
     win.innerHTML = winner;
 
-    const score = document.querySelector(".score");
-    score.innerHTML =
-      "Player: " + playerScore + " - " + "Computer: " + computerScore;
+    const displayPlayerScore = document.querySelector(".player-score");
+    displayPlayerScore.innerHTML = `Player: ${playerScore}`;
+
+    const displayComputerScore = document.querySelector(".computer-score");
+    displayComputerScore.innerHTML = `Computer: ${computerScore}`;
+
+    if (playerScore === 4) {
+      console.log("lol");
+    } else if (computerScore === 4) {
+      console.log("LOLOL");
+    }
   }
 }
 

@@ -1,5 +1,6 @@
 let choice = ["rock", "paper", "scissor"];
-let score = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
   return choice[Math.floor(Math.random() * 3)];
@@ -52,26 +53,52 @@ function getHandPic(handSelected, div) {
   src.appendChild(img);
 }
 
+function tallyScore(winner) {
+  if (winner === "Computer wins") {
+    computerScore++;
+  } else if (winner === "Player wins") {
+    playerScore++;
+  }
+}
+
 function Game() {
   //adds event listener for the rock paper scissor choices
   const rps = document.querySelectorAll(".rps");
-  let score = 0;
 
   rps.forEach((rps) => {
     rps.addEventListener("click", playerSelect);
   });
 
+  rps.forEach((rps) => {
+    rps.addEventListener("transitionend", normalButton);
+  });
+
+  // removes transform when transition ends
+  function normalButton(e) {
+    console.log(e.propertyName);
+    if (e.propertyName === "transform") {
+      this.classList.remove("clicked");
+    }
+  }
+
   //
   function playerSelect(e) {
+    this.classList.add("clicked");
+
     const computerSelection = getComputerChoice();
     const playerSelection = this.id.toString();
     getHandPic(computerSelection, ".computer");
     getHandPic(playerSelection, ".player");
 
     const winner = playRound(playerSelection, computerSelection);
+    tallyScore(winner);
 
     const win = document.querySelector(".winner");
     win.innerHTML = winner;
+
+    const score = document.querySelector(".score");
+    score.innerHTML =
+      "Player: " + playerScore + " - " + "Computer: " + computerScore;
   }
 }
 

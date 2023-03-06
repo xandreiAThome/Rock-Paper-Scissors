@@ -1,4 +1,5 @@
 let choice = ["rock", "paper", "scissor"];
+let score = 0;
 
 function getComputerChoice() {
   return choice[Math.floor(Math.random() * 3)];
@@ -6,38 +7,72 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return "tie";
+    return "Tie";
     //
   } else if (playerSelection === "rock") {
     if (computerSelection === "paper") {
-      return "computer wins";
+      return "Computer wins";
     } else {
-      return "human wins";
+      return "Player wins";
     }
     //
   } else if (playerSelection === "paper") {
     if (computerSelection === "scissor") {
-      return "computer wins";
+      return "Computer wins";
     } else {
-      return "player wins";
+      return "Player wins";
     }
     //
   } else if (playerSelection === "scissor") {
     if (computerSelection === "rock") {
-      return "computer wins";
+      return "Computer wins";
     } else {
-      return "player wins";
+      return "Player wins";
     }
   }
 }
 
+function getHandPic(handSelected, div) {
+  const img = document.createElement("img");
+
+  if (handSelected === "rock") {
+    img.src = "assets/rock.png";
+  } else if (handSelected === "paper") {
+    img.src = "assets/paper.png";
+  } else {
+    img.src = "assets/scissor.png";
+  }
+
+  let src = document.querySelector(div);
+
+  if (src.hasChildNodes()) {
+    src.removeChild(src.children[0]);
+  }
+
+  src.appendChild(img);
+}
+
 function Game() {
-  const playerSelection = prompt("Choose what hand you'll pick");
-  const computerSelection = getComputerChoice();
+  //adds event listener for the rock paper scissor choices
+  const rps = document.querySelectorAll(".rps");
+  let score = 0;
 
-  console.log(playRound(playerSelection, computerSelection));
+  rps.forEach((rps) => {
+    rps.addEventListener("click", playerSelect);
+  });
+
+  //
+  function playerSelect(e) {
+    const computerSelection = getComputerChoice();
+    const playerSelection = this.id.toString();
+    getHandPic(computerSelection, ".computer");
+    getHandPic(playerSelection, ".player");
+
+    const winner = playRound(playerSelection, computerSelection);
+
+    const win = document.querySelector(".winner");
+    win.innerHTML = winner;
+  }
 }
 
-for (let x = 0; x < 5; x++) {
-  Game();
-}
+Game();

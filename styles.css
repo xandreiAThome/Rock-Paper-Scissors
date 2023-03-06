@@ -1,12 +1,51 @@
-html {
-  min-height: 100%;
-}
-
+html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url("https://images.contentstack.io/v3/assets/blt822c60c126c92e3a/bltcb4ffbe17cc5d27d/5f8d80031f5f6d4173b510a4/NotebookPaper-wideruleLETTER_prev.jpg?format=jpg&auto=webp&overlay-align=middle,center&width=1200&height=630&fit=crop");
 }
 
-.text {
-  text-align: center;
-  vertical-align: middle;
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.choices {
+  display: flex;
+}
+
+.rps {
+  display: block;
+  width: clamp(80px, 12vw, 160px);
+  cursor: pointer;
+  transition: all 0.12 ease;
+}
+
+.clicked {
+}
+
+.display {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.player,
+.computer {
+  width: clamp(100px, 15vw, 200px);
+  height: clamp(100px, 15vw, 200px);
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player > img,
+.computer > img {
+  width: clamp(90px, 15vw, 190px);
 }

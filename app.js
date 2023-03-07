@@ -33,10 +33,10 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function getHandPic(handSelected, div) {
+function getHandPic(handSelected, element) {
   const img = document.createElement("img");
 
-  if (div === ".player") {
+  if (element === ".player") {
     img.classList.add("chosen-hand-player");
   } else {
     img.classList.add("chosen-hand-computer");
@@ -50,7 +50,7 @@ function getHandPic(handSelected, div) {
     img.src = "assets/scissor.png";
   }
 
-  let src = document.querySelector(div);
+  let src = document.querySelector(element);
 
   if (src.hasChildNodes()) {
     src.removeChild(src.children[0]);
@@ -64,6 +64,27 @@ function tallyScore(winner) {
     computerScore++;
   } else if (winner === "Player wins") {
     playerScore++;
+  }
+}
+
+function restartGame() {
+  const modal = document.querySelector(".modal");
+  const player = document.querySelector(".player-score");
+  const computer = document.querySelector(".computer-score");
+  const playerDisplay = document.querySelector(".player");
+  const computerDisplay = document.querySelector(".computer");
+
+  modal.classList.remove("show");
+  playerScore = 0;
+  computerScore = 0;
+  player.innerHTML = "Player: 0";
+  computer.innerHTML = "Computer: 0";
+
+  if (playerDisplay.hasChildNodes()) {
+    playerDisplay.removeChild(playerDisplay.children[0]);
+  }
+  if (computerDisplay.hasChildNodes()) {
+    computerDisplay.removeChild(computerDisplay.children[0]);
   }
 }
 
@@ -107,10 +128,15 @@ function Game() {
     const displayComputerScore = document.querySelector(".computer-score");
     displayComputerScore.innerHTML = `Computer: ${computerScore}`;
 
-    if (playerScore === 4) {
+    if (playerScore === 4 || computerScore === 4) {
+      const modal = document.querySelector(".modal");
+      const restartBtn = document.querySelector(".restart-btn");
+      const modalMsg = document.querySelector(".modal-msg");
+
+      modal.classList.add("show");
+      modalMsg.innerHTML = playerScore === 4 ? "You won!" : "You lost.";
+      restartBtn.addEventListener("click", restartGame);
       console.log("lol");
-    } else if (computerScore === 4) {
-      console.log("LOLOL");
     }
   }
 }

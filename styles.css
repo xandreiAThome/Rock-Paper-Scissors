@@ -90,3 +90,30 @@ h2 {
     transform: rotate(-70deg);
   }
 }
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: clamp(200px, 25vw, 500px);
+  background-color: #ef5480;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+
+.show {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.restart-btn {
+  font-size: clamp(24px, 2vw, 30px);
+  background-color: #73dae1;
+  border-radius: 6px;
+}

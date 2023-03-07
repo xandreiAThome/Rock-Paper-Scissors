@@ -96,8 +96,9 @@ function Game() {
   //adds event listener for the rock paper scissor choices
   const rps = document.querySelectorAll(".rps");
 
+  // when player selects hand it triggers the game loop
   rps.forEach((rps) => {
-    rps.addEventListener("click", playerSelect);
+    rps.addEventListener("click", gameLoop);
   });
 
   rps.forEach((rps) => {
@@ -113,7 +114,7 @@ function Game() {
   }
 
   //
-  function playerSelect(e) {
+  function gameLoop(e) {
     // adds clicked class to the choices to animate clicking
     this.classList.add("clicked");
 

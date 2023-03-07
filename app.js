@@ -73,12 +73,16 @@ function restartGame() {
   const computer = document.querySelector(".computer-score");
   const playerDisplay = document.querySelector(".player");
   const computerDisplay = document.querySelector(".computer");
+  const msg = document.querySelector(".winner");
+  const overlay = document.querySelector(".overlay");
 
   modal.classList.remove("show");
+  overlay.classList.remove("active");
   playerScore = 0;
   computerScore = 0;
   player.innerHTML = "Player: 0";
   computer.innerHTML = "Computer: 0";
+  msg.innerHTML = "Choose your hand";
 
   if (playerDisplay.hasChildNodes()) {
     playerDisplay.removeChild(playerDisplay.children[0]);
@@ -132,8 +136,10 @@ function Game() {
       const modal = document.querySelector(".modal");
       const restartBtn = document.querySelector(".restart-btn");
       const modalMsg = document.querySelector(".modal-msg");
+      const overlay = document.querySelector(".overlay");
 
       modal.classList.add("show");
+      overlay.classList.add("active");
       modalMsg.innerHTML = playerScore === 4 ? "You won!" : "You lost.";
       restartBtn.addEventListener("click", restartGame);
       console.log("lol");

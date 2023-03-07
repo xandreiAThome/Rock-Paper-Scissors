@@ -147,7 +147,7 @@ function Game() {
       modal.classList.add("show");
       overlay.classList.add("active");
       modalMsg.innerHTML = playerScore === 4 ? "You won!" : "You lost.";
-      restartBtn.addEventListener("click", restartGame);
+      restartBtn.onclick = restartGame;
       console.log("lol");
     }
   }

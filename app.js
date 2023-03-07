@@ -114,16 +114,20 @@ function Game() {
 
   //
   function playerSelect(e) {
+    // adds clicked class to the choices to animate clicking
     this.classList.add("clicked");
 
+    //gets the chosen hand of both and animates them on the bottom div
     const computerSelection = getComputerChoice();
     const playerSelection = this.id.toString();
     getHandPic(computerSelection, ".computer");
     getHandPic(playerSelection, ".player");
 
+    // plays a round
     const winner = playRound(playerSelection, computerSelection);
     tallyScore(winner);
 
+    // displays the winner of the current round
     const win = document.querySelector(".winner");
     win.innerHTML = winner;
 
@@ -133,6 +137,7 @@ function Game() {
     const displayComputerScore = document.querySelector(".computer-score");
     displayComputerScore.innerHTML = `Computer: ${computerScore}`;
 
+    // game loop end and restart
     if (playerScore === 4 || computerScore === 4) {
       const modal = document.querySelector(".modal");
       const restartBtn = document.querySelector(".restart-btn");

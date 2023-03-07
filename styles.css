@@ -23,9 +23,53 @@ h2 {
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
 }
 
+#title {
+  animation: title-intro 0.8s ease-in-out forwards;
+}
+
+@keyframes title-intro {
+  0% {
+    opacity: 0;
+    transform: translate(-15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+#sec-title {
+  animation: sec-title-intro 0.8s ease-in-out forwards 0.2s;
+  opacity: 0;
+}
+
+@keyframes sec-title-intro {
+  0% {
+    transform: translate(15%);
+  }
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
 .choices {
   display: flex;
   margin: clamp(1rem, 2vw, 1.5rem);
+  animation: choices-intro 0.8s ease forwards 0.8s;
+  opacity: 0;
+  transform: translateY(10%);
+}
+
+@keyframes choices-intro {
+  50% {
+    opacity: 1;
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .rps {
@@ -116,6 +160,8 @@ h2 {
   font-size: clamp(24px, 2vw, 30px);
   background-color: #73dae1;
   border-radius: 6px;
+  border-color: black;
+  cursor: pointer;
 }
 
 .overlay {
@@ -132,4 +178,45 @@ h2 {
 /*overlay*/
 .active {
   display: block;
+}
+
+/* typing animation*/
+.winner {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.3rem; /* Adjust as needed */
+  animation: typing 2s steps(30, end) forwards 1.2s;
+  opacity: 0;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.display {
+  animation: hand-intro 1s ease forwards 1.3s;
+  opacity: 0;
+}
+
+@keyframes hand-intro {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-msg {
+  margin-top: 0;
 }

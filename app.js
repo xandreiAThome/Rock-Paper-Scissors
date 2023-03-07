@@ -106,6 +106,7 @@ function Game() {
 
   // removes transform when transition ends
   function normalButton(e) {
+    console.log(e.propertyName);
     if (e.propertyName === "transform") {
       this.classList.remove("clicked");
     }

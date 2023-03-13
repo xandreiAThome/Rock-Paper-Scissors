@@ -233,6 +233,14 @@ h2 {
   display: flex;
   justify-content: center;
   width: 100%;
+  animation: footer-intro 2s ease forwards 2s;
+  opacity: 0;
+}
+
+@keyframes footer-intro {
+  100% {
+    opacity: 1;
+  }
 }
 
 .footer > a {

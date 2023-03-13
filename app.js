@@ -107,7 +107,6 @@ function Game() {
 
   // removes transform when transition ends
   function normalButton(e) {
-    console.log(e.propertyName);
     if (e.propertyName === "transform") {
       this.classList.remove("clicked");
     }
@@ -149,7 +148,6 @@ function Game() {
       overlay.classList.add("active");
       modalMsg.innerHTML = playerScore === 4 ? "You won!" : "You lost.";
       restartBtn.onclick = restartGame;
-      console.log("lol");
     }
   }
 }
